@@ -1,1 +1,1 @@
- This is an example of ingesting sendgrid and mailgun webhooks into google sheets then emailing a subset of the events. Which events are emailed is controlled by a dashboard.
+ This is an example of ingesting sendgrid and mailgun webhooks into google sheets then emailing a subset of the events. Which events are emailed is controlled by a dashboard. There was not a ton of documentation so I figured I would upload it. Questions are welcome.

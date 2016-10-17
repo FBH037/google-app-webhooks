@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <H1> Sendgrid </H1>
+    <?
+  var sendgridSheet = SpreadsheetApp.open(DriveApp.getFilesByName('Sendgrid webhook').next()).getDataRange().getValues()
+  var mailgunSheet = SpreadsheetApp.open(DriveApp.getFilesByName('Mailgun webhook').next()).getDataRange().getValues()
+  var events = []
+
+  for(n=1;n<sendgridSheet.length;++n){
+    events.push(sendgridSheet[n][3]);
+  }
+  for(n=1;n<mailgunSheet.length;++n){
+    events.push(mailgunSheet[n][0]);
+  }
+
+
+  events = events.reduce(function(p, c) {
+        if (p.indexOf(c) < 0) p.push(c);
+        return p;
+    }, []);
+ for(n=0;n<events.length;++n){
+ ?>
+
+    <label> <input type="checkbox"
+              onclick="google.script.run.updateFilter(<?=events[n]?>)"
+              <?= !PropertiesService.getScriptProperties().getProperties()[events[n]] ? "checked" : "" ?> >
+              <?= events[n] ?> </label><br>
+ <?};?>
+
+
+  </body>
+</html>
+
+
